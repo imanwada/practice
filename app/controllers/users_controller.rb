@@ -53,11 +53,23 @@ class UsersController < ApplicationController
         #session.clear 
     end
 
-    #def edit
-        #@user.update_attributes(user_params)
-    #end
+    def edit
+        user =User.find(params[:id])
+        user.update_attributes(user_params)
+    end
     private
         def user_params
             params.require(:user).permit(:fullname, :email, :password)
         end
 end
+
+def update
+    begin
+        user = User.find(params[:id])
+        user.update_attributes(user_params)
+        render json: {status: "SUCCESS", message: "User Updated Successfully", data: user}, status: :ok
+    rescue ActiveRecord::RecordNotFound => e
+        render json: {status: "ERROR", message: "User Not Updated", data: e}, status: :ok
+    end
+end        
+

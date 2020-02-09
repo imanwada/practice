@@ -1,0 +1,29 @@
+
+<% flash.each do |type, msg| %>
+    <% if type == 'success' %>
+        <div style="color:green"><%= msg %></div>
+    <% elsif type == 'error' %>
+        <div style="color:red"><%= msg %></div>
+    <% else %>
+        <div class="alert alert-info"><%= msg %></div>
+    <% end %>
+<% end %>
+
+<% if @project != nil and @project.errors.any? %>
+    <% @project.errors.full_messages.each do |msg| %>
+        <div style="color:red"><%= msg %></div>
+    <% end %>
+<% end %>
+
+
+
+
+
+
+<%= form_for(@project) do |f| %>
+    <%= f.label :Name %>
+    <%= f.text_field :Name %>
+    <%= f.label :Description %>
+    <%= f.text_field :Description %>
+    <%= f.submit %>
+  <% end %>

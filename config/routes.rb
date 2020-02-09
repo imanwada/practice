@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :projects do
+  get "/index" => 'projects#index',:on => :collection
+  get "/new" => 'projects#new',:on => :collection
+
+  end
   root to: redirect('/users/login')
   resources :users do
     
@@ -8,7 +13,7 @@ Rails.application.routes.draw do
     post "/login" => 'users#process_login', :on => :collection
     get "/dashboard" => 'users#dashboard', :on => :collection
     post "/logout" => 'users#logout', :on => :collection
-    #get "/edit" => 'users#edit' , :on => :collection
+    get "/edit" => 'users#edit' , :on => :collection
   end
   namespace 'api' do
     namespace 'v1' do

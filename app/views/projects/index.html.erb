@@ -34,16 +34,5 @@
     </div>
   </div>
 </nav>
-<% flash.each do |type, msg| %>
-    <% if type == 'success' %>
-        <div style="color:green"><%= msg %></div>
-    <% elsif type == 'error' %>
-        <div style="color:red"><%= msg %></div>
-    <% else %>
-        <div class="alert alert-info"><%= msg %></div>
-    <% end %>
-<% end %>
-<h1>Welcome, <%= @user.fullname %></h1>
 
-</body>
-
+<h1> Projects<h1>
