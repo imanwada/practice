@@ -25,7 +25,7 @@
           <a class="nav-link" href="/projects/index">Projects</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/users/edit">Edit</a>
+          <%= link_to 'Edit', edit_user_path(@user) ,:class => "nav-link"%>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/users/logout">Sign Out</a>

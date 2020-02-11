@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+ 
+  
   resources :projects do
   get "/index" => 'projects#index',:on => :collection
   get "/new" => 'projects#new',:on => :collection
@@ -13,12 +15,9 @@ Rails.application.routes.draw do
     post "/login" => 'users#process_login', :on => :collection
     get "/dashboard" => 'users#dashboard', :on => :collection
     post "/logout" => 'users#logout', :on => :collection
-    get "/edit" => 'users#edit' , :on => :collection
+    get ":id/edit" => 'users#edit' , :on => :collection
+    patch "/edit/:id" => 'users#update' , :on => :collection
   end
-  namespace 'api' do
-    namespace 'v1' do
-      resources :users
-    end
-  end
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

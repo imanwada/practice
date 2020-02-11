@@ -45,8 +45,9 @@ class UsersController < ApplicationController
     def dashboard 
         @user = User.find_by_email(session[:email])
     end
+
    def show
-    redirect_to login_users_path
+    @user = User.find(params[:id])
    end
     def logout
         session[:email] = nil
@@ -54,22 +55,19 @@ class UsersController < ApplicationController
     end
 
     def edit
-        user =User.find(params[:id])
-        user.update_attributes(user_params)
+        @user = User.find(params[:id])
     end
+
+    def update
+        @user = User.find(params[:id])
+        @user.update(user_params)
+        redirect_to dashboard_users_path
+    end        
+     
     private
         def user_params
             params.require(:user).permit(:fullname, :email, :password)
         end
 end
 
-def update
-    begin
-        user = User.find(params[:id])
-        user.update_attributes(user_params)
-        render json: {status: "SUCCESS", message: "User Updated Successfully", data: user}, status: :ok
-    rescue ActiveRecord::RecordNotFound => e
-        render json: {status: "ERROR", message: "User Not Updated", data: e}, status: :ok
-    end
-end        
 
