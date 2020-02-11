@@ -51,7 +51,8 @@ class UsersController < ApplicationController
    end
     def logout
         session[:email] = nil
-        #session.clear 
+        redirect_to '/login'
+        
     end
 
     def edit
